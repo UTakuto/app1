@@ -55,7 +55,7 @@ var_dump($profile , $jobs);
         
         <main class="p-10 flex flex-col items-center justify-center">
             <h2>プロフィール編集</h2>
-            <form action="store.php" method="POST" class="max-w-sm mx-auto">
+            <form action="update.php" method="POST" class="max-w-sm mx-auto">
                 <div class="pt-[8px]">
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900">NAME.</label>
                     <input type="text" name="name" id="name" value="<?= $profile -> name?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
@@ -77,9 +77,9 @@ var_dump($profile , $jobs);
                     <textarea name="about" id="about" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"><?= $profile -> about ?></textarea>
                 </div> 
                 <div class="flex justify-center">
-                    <!-- <button type="submit" class="inline-block rounded-md bg-slate-800 py-2 px-4 mt-6 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                    <button type="submit" class="inline-block rounded-md bg-slate-800 py-2 px-4 mt-6 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                         再登録
-                    </button> -->
+                    </button>
                 </div>
             </form>
 
