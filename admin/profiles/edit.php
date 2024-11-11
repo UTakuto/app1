@@ -56,6 +56,7 @@ var_dump($profile , $jobs);
         <main class="p-10 flex flex-col items-center justify-center">
             <h2>プロフィール編集</h2>
             <form action="update.php" method="POST" class="max-w-sm mx-auto">
+                <input type="hidden" name="id" value="<?= $profile -> id?>">
                 <div class="pt-[8px]">
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900">NAME.</label>
                     <input type="text" name="name" id="name" value="<?= $profile -> name?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">

@@ -1,4 +1,5 @@
 <?php
+// admin\profiles\store.php
 
 require "../config.php";
 
