@@ -39,15 +39,15 @@
                 <!-- style -->
                 <div class="pt-[8px]">
                     <label for="style" class="block mb-2 text-sm font-medium text-gray-900">STYLE.</label>
-                    <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex">
-                        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
-                            <div class="flex items-center ps-3 bg-gray-50">
+                    <ul class="items-center w-full text-sm font-medium text-gray-900 border border-gray-300 rounded-lg sm:flex bg-gray-50 rounded-md">
+                        <li class="w-full border-gray-300  sm:border-r">
+                            <div class="flex items-center ps-3">
                                 <input type="radio" value="1" name="style" id="style" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
                                 <label for="style" class="w-full py-3 ms-2 text-sm font-medium text-gray-900">個人</label>
                             </div>
                         </li>
-                        <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
-                            <div class="flex items-center ps-3 bg-gray-50">
+                        <li class="w-full border-gray-200">
+                            <div class="flex items-center ps-3">
                                 <input type="radio" value="2" name="style" id="style" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2">
                                 <label for="style" class="w-full py-3 ms-2 text-sm font-medium text-gray-900">チーム</label>
                             </div>
