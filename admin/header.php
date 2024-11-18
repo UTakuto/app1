@@ -1,4 +1,7 @@
-<?php 
+<?php
+// header.phpをそのまま持っていくとバレるからねー
+
+
 $currentFile = basename($_SERVER['PHP_SELF']);
 $currentDir = basename(dirname($_SERVER['PHP_SELF']));
 $displayText = '';
