@@ -26,7 +26,7 @@ try{
         $products[] = $row;
     }
 
-    var_dump($products);
+    // var_dump($products);
 }
 catch(PDOException $error){
 
