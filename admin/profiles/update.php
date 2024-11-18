@@ -30,7 +30,7 @@ try{
     if(!$job1){
         throw new Exception("希望職種1が未入力です");
     }
-    
+
     // jobの配列を作る
     $jobs = [];
     if($job1){
@@ -40,8 +40,54 @@ try{
         $jobs[] = $job2;
     }
 
+    //app1_profiles table と　app1_jobs table にデータを更新する
+    $db = new PDO( DB_DSN, DB_USER, DB_PASS );
+    $db -> beginTransaction();
+
+    $profilesTable = TB_PROFILES;
+    $jobsTable = TB_JOBS;
+
+    // トランザクションの有効化
+    $db -> beginTransaction();
+
+    // app1_profiles Update SQL
+    $sql = "
+        UPDATE {$profilesTable}
+        SET 
+            name = :name, email = :email, about = :about
+        WHERE id = :id
+    ";
+    $stmt = $db -> prepare($sql);
+    $stmt -> execute([
+        "id"    => $id,
+        "name"  => $name,
+        "email" => $email,
+        "about" => $about,
+    ]);
+
+    foreach($jobs as $job){
+        if($job["id"]){
+            $sql = "UPDATE {$jobsTable} SET name = :name WHERE id = :id";
+            $params = ["id" => $job["id"], "name" => $job["name"]];
+        }
+        else{
+            $sql = "INSERT INTO {$jobsTable} (profile_id , name) VALUES (:profile_id , :name)";
+            $params = ["name" => $job["name"], "profile_id" => $id];
+        }
+
+        $stmt = $db -> prepare($sql);
+        $stmt -> execute($params);
+    }
+
+
+
+    // 更新処理の適用
+    $db -> commit();
+
 }
 catch(PDOException $error){
+    //更新処理のロールバック
+    $db -> rollback();
 
 }
 catch(Exception $error){
