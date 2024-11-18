@@ -14,7 +14,14 @@ try{
     $stmt -> execute();
 
     $products = [];
-    while( $row = $stmt -> fetchObject() ){
+    while( $row = $stmt -> fetchObject()){
+        
+        //制作スタイル
+        if($row -> style === 1){
+            $row -> style = "個人";
+        }else{
+            $row -> style = "個人";
+        }
         $products[] = $row;
     }
 
@@ -46,7 +53,7 @@ catch(Exception $error){
                 <div class="px-6 py-4">
                     <div class="text-[20px] font-bold"><?= $product -> title ?></div>
                     <figure class="text-slate-600 leading-normal font-light">
-                       <img src="<?= $product -> thumbnail ?>">
+                        <img src="<?= $product -> thumbnail ?>">
                     </figure>
                     <p class="text-slate-600 leading-normal font-light">
                         <?= $product -> style ?>
