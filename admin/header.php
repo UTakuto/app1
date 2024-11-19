@@ -27,7 +27,7 @@ if (strpos($_SERVER['PHP_SELF'], '/products/') !== false) {
 ?>
 <header class="bg-pink-200 p-5">
     <h1 class="text-[30px]">
-        Admin - <?= $folderText ?> - <?= $displayText ?>
+        ADMIN - <?= $folderText ?> - <?= $displayText ?>
     </h1>
     <nav class="mt-1">
         <ul class="flex algin-center justify-start gap-[10px]">
