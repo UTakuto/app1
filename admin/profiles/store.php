@@ -49,7 +49,13 @@ try{
     ";
 
     $stmt = $db -> prepare($profileSql);
-    $stmt -> execute(["name" => $name, "email" => $email, "about" => $about,]);
+    $stmt -> execute(
+        [
+            "name" => $name, 
+            "email" => $email, 
+            "about" => $about,
+        ]
+    );
 
     //profile id 取得
     $insertID = $db -> lastInsertId();
