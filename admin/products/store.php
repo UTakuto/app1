@@ -73,12 +73,6 @@ try{
         ]
         );
 
-    //     compact(
-    //         "title", "catchcopy", "thumbnail", "description",
-    //         "style", "grade", "skill", "demo", "period"
-    //     )
-    // );
-
     $db -> commit();
 
 }
