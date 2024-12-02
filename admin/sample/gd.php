@@ -36,3 +36,7 @@ $image = file_get_contents("../../storage/thumb.png");
 
 //仮に出力したサムネイルファイルを削除
 unlink("../../storage/thumb.png");
+
+//画像のヘッダー情報を設定
+header("Content-Type: image/png");
+print $image;
