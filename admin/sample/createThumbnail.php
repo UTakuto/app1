@@ -1,11 +1,28 @@
 <?php 
-//GDを使った画像処理
+//GDを使ったサムネイル画像の生成
+//画像ファイルとして返却
 
 $imageSrc = "../../storage/aaa.png";
 
+$imageSize = getimagesize($imageSrc);
+
+//サムネイル画像のサイズを設定
+if(  $imageSize[0] > $imageSize[1] ){
+    //横向き
+    $scale               = 720 / $imageSize[0];
+    $thumbSize["width"]  = 720;
+    $thumbSize["height"] = (int)($imageSize[1] * $scale);
+}else{
+    //縦向き
+    $scale               = 720 / $imageSize[1];
+    $thumbSize["width"]  = (int)($imageSize[0] * $scale);
+    $thumbSize["height"] = 720;
+}
+
 // 　画像キャンバスの作成
 //imagecreatetruecolor(width , height)
-$canvas = imagecreatetruecolor( 720 , 720 );
+$canvas = imagecreatetruecolor( $thumbSize["width"], $thumbSize["height"] );
+
 
 //スクリーン画像を生成
 $screen = imagecreatefrompng($imageSrc);
@@ -16,8 +33,8 @@ imagecopyresampled(
     $screen, 
     0, 0, //キャンバスのx , y座標
     0, 0, //スクリーンのx , y座標
-    720, 720, //キャンバスのwidth,height
-    getimagesize($imageSrc)[0], getimagesize($imageSrc)[1]
+    $thumbSize["width"], $thumbSize["height"], //キャンバスのwidth,height
+    $imageSize[0], $imageSize[1]
 );
 
 //キャンバスの画像を名前をつけて保存
@@ -35,7 +52,7 @@ $image = file_get_contents("../../storage/thumb.png");
 // printf("<img src='%s'>", "data:image/png;base64," . base64_encode($image));
 
 //仮に出力したサムネイルファイルを削除
-unlink("../../storage/thumb.png");
+// unlink("../../storage/thumb.png");
 
 //画像のヘッダー情報を設定
 header("Content-Type: image/png");
