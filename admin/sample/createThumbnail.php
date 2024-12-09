@@ -14,20 +14,26 @@ if( !$fileName ){
 $imageSrc = "../../storage/{$fileName}";
 $imageSize = getimagesize($imageSrc);
 
+if( !$resize ){
+    $resize = ( $imageSize[0] > $imageSize[1] ) ? $imageSize[0] : $imageSize[1];
+}
+
+
 //サムネイル画像のサイズを設定
+//縦横サイズ指定
 if(  $imageSize[0] > $imageSize[1] ){
     //横向き
-    $scale               = 720 / $imageSize[0];
-    $thumbSize["width"]  = 720;
+    $scale               = $resize / $imageSize[0];
+    $thumbSize["width"]  = $resize;
     $thumbSize["height"] = (int)($imageSize[1] * $scale);
 }else{
     //縦向き
-    $scale               = 720 / $imageSize[1];
+    $scale               = $resize / $imageSize[1];
     $thumbSize["width"]  = (int)($imageSize[0] * $scale);
-    $thumbSize["height"] = 720;
+    $thumbSize["height"] = $resize;
 }
 
-// 　画像キャンバスの作成
+// 画像キャンバスの作成
 //imagecreatetruecolor(width , height)
 $canvas = imagecreatetruecolor( $thumbSize["width"], $thumbSize["height"] );
 
