@@ -4,6 +4,7 @@
 
 // 生成したいサムネイルのファイル名
 $fileName = filter_input( INPUT_GET , "image_name" );
+$resize = filter_input( INPUT_GET , "size" , FILTER_VALIDATE_INT );
 
 if( !$fileName ){
     print "サムネイルのファイル名がありません";
@@ -11,7 +12,6 @@ if( !$fileName ){
 
 
 $imageSrc = "../../storage/{$fileName}";
-
 $imageSize = getimagesize($imageSrc);
 
 //サムネイル画像のサイズを設定
@@ -35,7 +35,7 @@ $canvas = imagecreatetruecolor( $thumbSize["width"], $thumbSize["height"] );
 //スクリーン画像を生成
 switch( $imageSize["mime"] ){
     case "image/jpeg":
-        $exe = "jpg";
+        $exe = "jpeg";
         $screen = imagecreatefromjpeg($imageSrc);
         break;
     case "image/png" :
@@ -70,15 +70,15 @@ if( $imageSize["mime"] === "image/png" ){
 
 //キャンバスの画像を名前をつけて保存
 switch( $imageSize["mime"] ){
-    case "image/jpeg" : imagejpeg( $canvas , "../../storage/thumb.jpg" ) ; break;
+    case "image/jpeg" : imagejpeg( $canvas , "../../storage/thumb.jpeg" ) ; break;
     case "image/png"  : imagepng(  $canvas , "../../storage/thumb.png" ) ; break;
     case "image/gif"  : imagegif(  $canvas , "../../storage/thumb.gif" ) ; break;
     case "image/webp" : imagewebp( $canvas , "../../storage/thumb.webp") ; break;
 }
 //pngの透過を有効にする
-imagesavealpha($canvas ,  true);
+// imagesavealpha($canvas ,  true);
 //image***(キャンバス , 出力先のパス , 圧縮率)
-imagepng($canvas, "../../storage/thumb.{$exe}");
+// imagepng($canvas, "../../storage/thumb.{$exe}");
 
 //メモリ内のキャンバスを解放
 imagedestroy($canvas);
@@ -89,7 +89,7 @@ $image = file_get_contents("../../storage/thumb.{$exe}");
 // printf("<img src='%s'>", "data:image/png;base64," . base64_encode($image));
 
 //仮に出力したサムネイルファイルを削除
-// unlink("../../storage/thumb.png");
+unlink("../../storage/thumb.{$exe}");
 
 //画像のヘッダー情報を設定
 header("Content-Type: image/{$exe}");
