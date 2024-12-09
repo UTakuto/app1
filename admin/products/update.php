@@ -16,6 +16,21 @@ try{
     $demo        = filter_input(INPUT_POST, "demo", FILTER_VALIDATE_URL);
     $period      = filter_input(INPUT_POST, "period", FILTER_VALIDATE_INT);
 
+
+    // デバッグ情報を表示
+    var_dump([
+        "id" => $id,
+        "title" => $title,
+        "catchcopy" => $catchcopy,
+        "thumbnail" => $thumbnail,
+        "description" => $description,
+        "style" => $style,
+        "grade" => $grade,
+        "skill" => $skill,
+        "demo" => $demo,
+        "period" => $period,
+    ]);
+
     //未入力チェック
     if(!$title){
         header("Location: create.php?title");
@@ -33,10 +48,10 @@ try{
     $db = new PDO( DB_DSN, DB_USER, DB_PASS );
     $db -> beginTransaction();
 
-    $productionTable = TB_PRODUCTS;
+    $productsTable = TB_PRODUCTS;
 
     $sql = "
-        UPDATE {$productionTable}
+        UPDATE {$productsTable}
         SET 
             title = :title, 
             catchcopy = :catchcopy, 
@@ -53,6 +68,7 @@ try{
     $stmt = $db -> prepare($sql);
     $stmt -> execute(
         [
+            "id" => $id,
             "title" => $title,
             "catchcopy" => $catchcopy,
             "thumbnail" => $thumbnail,
@@ -62,7 +78,6 @@ try{
             "skill" => $skill,
             "demo" => $demo,
             "period" => $period,
-            "id" => $id
         ]
     );
 
@@ -70,7 +85,8 @@ try{
 
 }catch(PDOException $error){
     $db -> rollBack();
+    print $error -> getMessage();
 }
 catch(Exception $error){
-    $db -> rollBack();
+    print $error -> getMessage();
 }
