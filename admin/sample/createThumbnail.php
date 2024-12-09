@@ -78,13 +78,13 @@ switch( $imageSize["mime"] ){
 //pngの透過を有効にする
 imagesavealpha($canvas ,  true);
 //image***(キャンバス , 出力先のパス , 圧縮率)
-imagepng($canvas, "../../storage/thumb.png");
+imagepng($canvas, "../../storage/thumb.{$exe}");
 
 //メモリ内のキャンバスを解放
 imagedestroy($canvas);
 
 //出力したサムネイル画像の読み込み
-$image = file_get_contents("../../storage/thumb.png");
+$image = file_get_contents("../../storage/thumb.{$exe}");
 
 // printf("<img src='%s'>", "data:image/png;base64," . base64_encode($image));
 
@@ -92,5 +92,5 @@ $image = file_get_contents("../../storage/thumb.png");
 // unlink("../../storage/thumb.png");
 
 //画像のヘッダー情報を設定
-header("Content-Type: image/png");
+header("Content-Type: image/{$exe}");
 print $image;
