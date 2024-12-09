@@ -50,11 +50,11 @@ catch(Exception $error){
         <?php require __DIR__ . "/../header.php"; ?>
         <main class="p-10 flex flex-row flex-wrap items-center justify-center">
         <?php foreach($products as $product) : ?>
-            <div class="border-solid border-[1px] border-slate-500 w-[500px] h-[200px] flex items-center m-[10px] rounded overflow-hidden shadow-md bg-white">
-                <div class="px-6 py-4">
+            <div class="border-solid border-[1px] border-slate-500 w-[500px] h-[250px] flex items-center m-[10px] rounded overflow-hidden shadow-md bg-white">
+                <div class="px-6">
                     <div class="text-[20px] font-bold"><?= $product -> title ?></div>
                     <figure class="text-slate-600 leading-normal font-light">
-                        <img src="<?= $product -> thumbnail ?>">
+                        <img src="../sample/createThumbnail.php?image_name=<?= $product -> thumbnail ?>&size=120">
                     </figure>
                     <p class="text-slate-600 leading-normal font-light">
                         <?= $product -> style ?>
@@ -72,6 +72,9 @@ catch(Exception $error){
     <div class="flex justify-center align-center">
         <a href="create.php" class="inline-block rounded-md bg-slate-800 py-2 px-4 mt-6 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
             NEW CREATE
+        </a>
+        <a href="update.php" class="inline-block rounded-md bg-slate-800 py-2 px-4 mt-6 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+            UPDATE
         </a>
     </div>
 
