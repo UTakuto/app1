@@ -34,10 +34,22 @@ $canvas = imagecreatetruecolor( $thumbSize["width"], $thumbSize["height"] );
 
 //スクリーン画像を生成
 switch( $imageSize["mime"] ){
-    case "image/jpeg": $screen = imagecreatefromjpeg($imageSrc); break;
-    case "image/png" : $screen = imagecreatefrompng($imageSrc); break;
-    case "image/gif" : $screen = imagecreatefromgif($imageSrc); break;
-    case "image/webp": $screen = imagecreatefromwebp($imageSrc); break;
+    case "image/jpeg":
+        $exe = "jpg";
+        $screen = imagecreatefromjpeg($imageSrc);
+        break;
+    case "image/png" :
+        $exe = "png";
+        $screen = imagecreatefrompng($imageSrc);
+        break;
+    case "image/gif" :
+        $exe = "gif";
+        $screen = imagecreatefromgif($imageSrc);
+        break;
+    case "image/webp":
+        $exe = "webp";
+        $screen = imagecreatefromwebp($imageSrc);
+        break;
 }
 // $screen = imagecreatefrompng($imageSrc);
 
