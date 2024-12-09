@@ -9,10 +9,8 @@ if( !$fileName ){
     print "サムネイルのファイル名がありません";
 }
 
-var_dump($fileName);
-exit;
 
-$imageSrc = "../../storage/aaa.png";
+$imageSrc = "../../storage/{$fileName}";
 
 $imageSize = getimagesize($imageSrc);
 
