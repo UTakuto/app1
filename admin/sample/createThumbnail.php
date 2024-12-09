@@ -2,6 +2,16 @@
 //GDを使ったサムネイル画像の生成
 //画像ファイルとして返却
 
+// 生成したいサムネイルのファイル名
+$fileName = filter_input( INPUT_GET , "image_name" );
+
+if( !$fileName ){
+    print "サムネイルのファイル名がありません";
+}
+
+var_dump($fileName);
+exit;
+
 $imageSrc = "../../storage/aaa.png";
 
 $imageSize = getimagesize($imageSrc);
