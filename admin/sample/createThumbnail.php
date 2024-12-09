@@ -33,7 +33,13 @@ $canvas = imagecreatetruecolor( $thumbSize["width"], $thumbSize["height"] );
 
 
 //スクリーン画像を生成
-$screen = imagecreatefrompng($imageSrc);
+switch( $imageSize["mime"] ){
+    case "image/jpeg": $screen = imagecreatefromjpeg($imageSrc); break;
+    case "image/png" : $screen = imagecreatefrompng($imageSrc); break;
+    case "image/gif" : $screen = imagecreatefromgif($imageSrc); break;
+    case "image/webp": $screen = imagecreatefromwebp($imageSrc); break;
+}
+// $screen = imagecreatefrompng($imageSrc);
 
 //キャンバスにスクリーンを貼り付ける
 imagecopyresampled(
@@ -45,7 +51,18 @@ imagecopyresampled(
     $imageSize[0], $imageSize[1]
 );
 
+if( $imageSize["mime"] === "image/png" ){
+    //透過を有効にする
+    imagesavealpha($canvas , true);
+}
+
 //キャンバスの画像を名前をつけて保存
+switch( $imageSize["mime"] ){
+    case "image/jpeg" : imagejpeg( $canvas , "../../storage/thumb.jpg" ) ; break;
+    case "image/png"  : imagepng(  $canvas , "../../storage/thumb.png" ) ; break;
+    case "image/gif"  : imagegif(  $canvas , "../../storage/thumb.gif" ) ; break;
+    case "image/webp" : imagewebp( $canvas , "../../storage/thumb.webp") ; break;
+}
 //pngの透過を有効にする
 imagesavealpha($canvas ,  true);
 //image***(キャンバス , 出力先のパス , 圧縮率)
