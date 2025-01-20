@@ -32,6 +32,14 @@ require_once "../config.php";
                     <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 </div>
                 <div class="pt-[8px]">
+                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900">PASSWORD.</label>
+                    <input type="password" name="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                </div>
+                <div class="pt-[8px]">
+                    <label for="repassword" class="block mb-2 text-sm font-medium text-gray-900">RE-PASSWORD.</label>
+                    <input type="password" name="repassword" id="repassword" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                </div>
+                <div class="pt-[8px]">
                     <label for="job1" class="block mb-2 text-sm font-medium text-gray-900">JOB1.</label>
                     <input type="text" name="job1" id="job1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 </div>
