@@ -66,6 +66,9 @@ try{
         throw new Exception("このメールアドレスは既に登録されています");
     }
 
+    // プリペアードステートメントの解放
+    $stmt -> closeCursor();
+
     //profile insert
     $profileSql ="
         INSERT INTO {$profileTable} (name, email, password, about)
